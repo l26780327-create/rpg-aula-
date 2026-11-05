@@ -231,7 +231,6 @@
 
 
 
-
 // A trilha do farol · jogo de demonstração do Jovem Tech (E15) - Versão Antitravamento
 const prompt = require("prompt-sync")({ sigint: true }); // O { sigint: true } impede que o terminal congele na tela branca
 
@@ -254,7 +253,7 @@ let pocoSeco = false;
 console.log("");
 console.log(nome + ", o farol da costa apagou. Alguém precisa chegar lá antes do anoitecer.");
 
-while (jogando) {
+while (jogando){
   // A cada passo, o veneno tira 1 de vida
   if (veneno > 0) {
     vida = vida - 1;
@@ -268,45 +267,9 @@ while (jogando) {
     jogando = false;
     break; 
   }
-
-  // ===== LOCAL: VILA =====
-  if (local === "vila") {
-    console.log("");
-    if (inventario.includes("moeda furada") === false && inventario.includes("corda") === false) {
-      console.log("[VILA] Um velho pescador te entrega uma moeda furada: 'Não vale nada. Guarde mesmo assim.'");
-      inventario.push("moeda furada");
-    } else {
-      console.log("[VILA] O velho pescador acena de longe, desejando boa sorte.");
-    }
-    
-    console.log("1 - ir para a floresta   2 - ir para o poço");
-    let escolha = prompt("> ");
-    if (escolha === "1") local = "floresta";
-    if (escolha === "2") local = "poco";
-
-  // ===== LOCAL: FLORESTA =====
-  } else if (local === "floresta") {
-    console.log("");
-    console.log("[FLORESTA] Galhos fechados. Algo se mexe no chão.");
-    
-    let sorte = Math.random();
-    if (TESTE) sorte = 0.5;
-
-    // Chance justa de 30%
-    if (sorte < 0.3) {
-      console.log("Uma aranha te morde! Você está envenenado por 3 passos.");
-      veneno = 3;
-    } else {
-      console.log("Era só o vento batendo nas folhas.");
-    }
-
-    console.log("1 - seguir para a ponte   2 - voltar para a vila");
-    let escolha = prompt("> ");
-    if (escolha === "1") local = "ponte";
-    if (escolha === "2") local = "vila";
-
   // ===== LOCAL: POÇO =====
-  } else if (local === "poco") {
+  }
+   if (local === "poco") {
     console.log("");
     console.log("[POÇO] Um poço antigo. Não dá para ver o fundo.");
     
@@ -361,4 +324,4 @@ while (jogando) {
     console.log("Fim: " + nome + " salvou a costa com " + vida + " de vida.");
     jogando = false;
   }
-}
+
